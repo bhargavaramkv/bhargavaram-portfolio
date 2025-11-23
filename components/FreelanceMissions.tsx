@@ -63,7 +63,7 @@ export const FreelanceMissions: React.FC = () => {
         
         <div className="mt-12 text-center">
            <p className="text-white/50 text-sm font-mono animate-pulse">
-             > INCOMING TRANSMISSION: NEW PROJECTS ACCEPTED
+             {'>'}  INCOMING TRANSMISSION: NEW PROJECTS ACCEPTED
            </p>
         </div>
       </div>
