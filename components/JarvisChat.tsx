@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { sendMessageToJarvis } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { MessageSquare, Send, Minus, X } from 'lucide-react';
 
@@ -41,17 +40,17 @@ export const JarvisChat: React.FC = () => {
     setInput('');
     setIsLoading(true);
 
-    const responseText = await sendMessageToJarvis(input);
-
-    const jarvisMsg: ChatMessage = {
-      id: (Date.now() + 1).toString(),
-      text: responseText,
-      sender: 'jarvis',
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, jarvisMsg]);
-    setIsLoading(false);
+    // Simulate response (Gemini API removed)
+    setTimeout(() => {
+      const jarvisMsg: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "J.A.R.V.I.S. AI integration is currently offline. Please contact Bhargava Ram directly for inquiries.",
+        sender: 'jarvis',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, jarvisMsg]);
+      setIsLoading(false);
+    }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
