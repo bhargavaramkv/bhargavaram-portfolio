@@ -5,6 +5,7 @@ export default defineConfig(({ mode }) => {
   // Use '.' as the current directory to avoid TypeScript errors with process.cwd() when Node types are missing
   const env = loadEnv(mode, '.', '');
   return {
+    base: '/bhargavaram-portfolio/',
     plugins: [react()],
     define: {
       // Polyfill process.env.API_KEY for the Gemini SDK
