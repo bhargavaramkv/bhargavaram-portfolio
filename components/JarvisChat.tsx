@@ -1,26 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '../types';
 import { MessageSquare, Send, Minus, X } from 'lucide-react';
-import { TECH_STACK } from './Hero';
-import { PROJECTS } from './MissionLog';
-import { SIDE_QUESTS } from './FreelanceMissions';
-import { SKILLS_DATA } from './Superpowers';
+// import { TECH_STACK } from './Hero';
+// import { PROJECTS } from './MissionLog';
+// import { SIDE_QUESTS } from './FreelanceMissions';
+// import { SKILLS_DATA } from './Superpowers';
 
-const SYSTEM_PROMPT = `
-You are J.A.R.V.I.S., the AI assistant for Bhargava Ram's portfolio website.
-Your goal is to impress visitors with Bhargava's technical skills and experience.
-Answer questions as J.A.R.V.I.S. (Just A Rather Very Intelligent System).
-Keep responses concise, professional, and slightly witty/robotic in a Marvel style.
+// const SYSTEM_PROMPT = `
+// You are J.A.R.V.I.S., the AI assistant for Bhargava Ram's portfolio website.
+// Your goal is to impress visitors with Bhargava's technical skills and experience.
+// Answer questions as J.A.R.V.I.S. (Just A Rather Very Intelligent System).
+// Keep responses concise, professional, and slightly witty/robotic in a Marvel style.
 
-Here is the data about Bhargava:
-Tech Stack: ${TECH_STACK.join(', ')}
-Projects: ${JSON.stringify(PROJECTS.map(p => ({ title: p.title, desc: p.description, tech: p.technologies })))}
-Freelance Work: ${JSON.stringify(SIDE_QUESTS.map(q => ({ title: q.title, desc: q.desc, status: q.status })))}
-Skills: ${JSON.stringify(SKILLS_DATA.map(s => ({ subject: s.subject, proficiency: s.A })))}
+// Here is the data about Bhargava:
+// Tech Stack: ${TECH_STACK.join(', ')}
+// Projects: ${JSON.stringify(PROJECTS.map(p => ({ title: p.title, desc: p.description, tech: p.technologies })))}
+// Freelance Work: ${JSON.stringify(SIDE_QUESTS.map(q => ({ title: q.title, desc: q.desc, status: q.status })))}
+// Skills: ${JSON.stringify(SKILLS_DATA.map(s => ({ subject: s.subject, proficiency: s.A })))}
 
-If asked about contact, direct them to kattavenkatabhargavaram@gmail.com.
-Do not make up facts. If you don't know something, say "My database does not contain that information."
-`;
+// If asked about contact, direct them to kattavenkatabhargavaram@gmail.com.
+// Do not make up facts. If you don't know something, say "My database does not contain that information."
+// `;
 
 export const JarvisChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -121,8 +121,8 @@ export const JarvisChat: React.FC = () => {
           >
             <div
               className={`max-w-[80%] p-3 border ${msg.sender === 'user'
-                  ? 'bg-jarvis-blue/20 border-jarvis-blue text-white rounded-tl-xl rounded-bl-xl rounded-br-xl'
-                  : 'bg-transparent border-jarvis-blue/50 text-jarvis-blue rounded-tr-xl rounded-bl-xl rounded-br-xl'
+                ? 'bg-jarvis-blue/20 border-jarvis-blue text-white rounded-tl-xl rounded-bl-xl rounded-br-xl'
+                : 'bg-transparent border-jarvis-blue/50 text-jarvis-blue rounded-tr-xl rounded-bl-xl rounded-br-xl'
                 }`}
             >
               <p>{msg.text}</p>
