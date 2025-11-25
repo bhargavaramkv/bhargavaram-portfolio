@@ -117,6 +117,45 @@ const ProfileCard: React.FC = () => (
 
 // --- Main Component ---
 
+const Typewriter: React.FC = () => {
+  const [text, setText] = React.useState('');
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [loopNum, setLoopNum] = React.useState(0);
+  const [typingSpeed, setTypingSpeed] = React.useState(150);
+
+  React.useEffect(() => {
+    const words = ["SOFTWARE ENGINEER", "FREELANCER"];
+    const handleType = () => {
+      const i = loopNum % words.length;
+      const fullText = words[i];
+
+      setText(isDeleting
+        ? fullText.substring(0, text.length - 1)
+        : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? 50 : 150);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 2000); // Pause at full text
+      } else if (isDeleting && text === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum]);
+
+  return (
+    <span className="text-[#0064FF]">
+      {text}
+      <span className="animate-pulse">|</span>
+    </span>
+  );
+};
+
 export const Hero: React.FC = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#f8f9fa] to-[#ffffff] pt-20 md:pt-0">
@@ -143,8 +182,8 @@ export const Hero: React.FC = () => {
           </h1>
 
           {/* Subtitle */}
-          <h2 className="font-comic text-[32px] md:text-[48px] text-black mb-[40px] tracking-[1px] leading-none">
-            SOFTWARE ENGINEER & <span className="text-[#0064FF]">FREELANCER</span>
+          <h2 className="font-comic text-[32px] md:text-[48px] text-black mb-[40px] tracking-[1px] leading-none min-h-[48px]">
+            <Typewriter />
           </h2>
 
           {/* Description */}
