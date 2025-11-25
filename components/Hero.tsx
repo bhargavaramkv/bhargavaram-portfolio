@@ -8,10 +8,15 @@ export const TECH_STACK = ['.NET Core', 'MongoDB', 'Microservices', 'C#', 'Docke
 
 const TechStack: React.FC = () => (
   <div className="flex flex-wrap justify-start gap-3">
-    {TECH_STACK.map((tech) => (
-      <div key={tech} className="flex items-center gap-2 px-4 py-2 bg-marvel-dark border-l-4 border-marvel-blue rounded-r text-sm font-mono text-cyan-300 shadow-lg hover:bg-black transition-colors cursor-default group">
-        <Terminal size={16} className="text-marvel-blue group-hover:text-white transition-colors" />
-        <span className="tracking-wider">{tech.toUpperCase()}</span>
+    {TECH_STACK.map((tech, index) => (
+      <div
+        key={tech}
+        className="flex items-center gap-2 px-4 py-2 bg-marvel-dark/80 border border-marvel-blue/30 rounded text-sm font-mono text-cyan-300 shadow-[0_0_10px_rgba(0,240,255,0.1)] hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:border-marvel-blue transition-all duration-300 cursor-default group relative overflow-hidden animate-[float_4s_ease-in-out_infinite]"
+        style={{ animationDelay: `${index * 0.2}s` }}
+      >
+        <div className="absolute inset-0 bg-marvel-blue/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+        <Terminal size={16} className="text-marvel-blue group-hover:text-white transition-colors relative z-10" />
+        <span className="tracking-wider relative z-10">{tech.toUpperCase()}</span>
       </div>
     ))}
   </div>
@@ -115,8 +120,6 @@ const ProfileCard: React.FC = () => (
   </div>
 );
 
-// --- Main Component ---
-
 const Typewriter: React.FC = () => {
   const [text, setText] = React.useState('');
   const [isDeleting, setIsDeleting] = React.useState(false);
@@ -158,7 +161,11 @@ const Typewriter: React.FC = () => {
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#f8f9fa] to-[#ffffff] pt-20 md:pt-0">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-marvel-dark pt-20 md:pt-0">
+
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-marvel-dark/50 to-marvel-dark pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
 
@@ -166,51 +173,77 @@ export const Hero: React.FC = () => {
         <div className="flex flex-col items-start text-left order-2 lg:order-1 pt-10 lg:pt-0">
 
           {/* System Badge */}
-          <div className="bg-[#0064FF] text-white px-[20px] py-[8px] font-bold text-[14px] tracking-[2px] uppercase -skew-x-[10deg] border-[2px] border-black shadow-[4px_4px_0px_#000] mb-[40px]">
-            <span className="inline-block skew-x-[10deg]">MISSION STATUS: ACTIVE</span>
+          <div className="bg-marvel-blue/5 text-marvel-blue px-[20px] py-[8px] font-bold text-[14px] tracking-[2px] uppercase -skew-x-[10deg] border border-marvel-blue/50 shadow-[0_0_15px_rgba(0,240,255,0.2)] mb-[40px] backdrop-blur-sm animate-pulse">
+            <span className="inline-block skew-x-[10deg] flex items-center gap-2">
+              <span className="w-2 h-2 bg-marvel-blue rounded-full shadow-[0_0_10px_#00F0FF]"></span>
+              NEURAL LINK ESTABLISHED
+            </span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-comic text-[50px] md:text-[80px] leading-none mb-[20px] text-black tracking-[2px]">
+          <h1 className="font-comic text-[50px] md:text-[80px] leading-none mb-[20px] text-white tracking-[2px] drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">
             HELLO, I'M
           </h1>
 
-          {/* Name */}
-          <h1 className="font-comic text-[60px] md:text-[90px] text-[#0064FF] tracking-[3px] leading-none mb-[30px]"
-            style={{ textShadow: '3px 3px 0px #000, 6px 6px 0px rgba(0, 100, 255, 0.3)' }}>
-            BHARGAVA RAM
-          </h1>
+          {/* Name with Glitch Effect */}
+          <div className="relative mb-[30px] group">
+            <h1 className="font-comic text-[60px] md:text-[90px] text-transparent bg-clip-text bg-gradient-to-r from-marvel-blue to-white tracking-[3px] leading-none relative z-10 group-hover:animate-glitch">
+              BHARGAVA RAM
+            </h1>
+            <h1 className="font-comic text-[60px] md:text-[90px] text-marvel-red tracking-[3px] leading-none absolute top-0 left-0 opacity-0 group-hover:opacity-70 group-hover:translate-x-[2px] transition-all duration-100 z-0">
+              BHARGAVA RAM
+            </h1>
+            <h1 className="font-comic text-[60px] md:text-[90px] text-marvel-blue tracking-[3px] leading-none absolute top-0 left-0 opacity-0 group-hover:opacity-70 group-hover:-translate-x-[2px] transition-all duration-100 z-0">
+              BHARGAVA RAM
+            </h1>
+          </div>
 
           {/* Subtitle */}
-          <h2 className="font-comic text-[32px] md:text-[48px] text-black mb-[40px] tracking-[1px] leading-none min-h-[48px]">
+          <h2 className="font-comic text-[32px] md:text-[48px] text-gray-400 mb-[40px] tracking-[1px] leading-none min-h-[48px]">
             <Typewriter />
           </h2>
 
-          {/* Description */}
-          <div className="border-l-[5px] border-[#0064FF] pl-[25px] max-w-[700px] mb-[50px]">
-            <p className="text-[18px] md:text-[20px] leading-[1.6] text-[#666] font-body">
-              I build scalable, production-grade backend systems using <strong className="text-black font-bold">C# .NET Core</strong> and <strong className="text-black font-bold">Azure</strong>.
-              Available for complex distributed systems work and freelance projects.
-            </p>
-          </div>
+          {/* Dark UI Block with Scanline Border */}
+          <div className="relative group max-w-[700px] mb-[50px]">
+            {/* Background & Border */}
+            <div className="absolute inset-0 bg-black/40 border border-white/10 rounded-xl group-hover:border-marvel-blue/50 transition-colors duration-300 backdrop-blur-sm"></div>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-[20px] flex-wrap w-full md:w-auto mb-10">
-            {/* Primary Button */}
-            <button
-              onClick={() => document.getElementById('missions')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-[40px] py-[18px] bg-[#0064FF] text-white font-comic text-[24px] tracking-[2px] border-[3px] border-black shadow-[6px_6px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[2px_2px_0px_#000] transition-all flex items-center justify-center gap-[12px]"
-            >
-              <Layers className="w-[24px] h-[24px]" /> VIEW PROJECTS
-            </button>
+            {/* Scanline Effect Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,195,255,0.05)_50%)] bg-[size:100%_4px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl"></div>
 
-            {/* Secondary Button */}
-            <a
-              href="mailto:kattavenkatabhargavaram@gmail.com"
-              className="px-[40px] py-[18px] bg-white text-black font-comic text-[24px] tracking-[2px] border-[3px] border-black shadow-[6px_6px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[2px_2px_0px_#000] transition-all flex items-center justify-center gap-[12px]"
-            >
-              <Send className="w-[24px] h-[24px]" /> CONTACT ME
-            </a>
+            {/* Corner Accents */}
+            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-marvel-blue/30 group-hover:border-marvel-blue transition-colors duration-300 rounded-tl-lg"></div>
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-marvel-blue/30 group-hover:border-marvel-blue transition-colors duration-300 rounded-br-lg"></div>
+
+            <div className="relative p-8">
+              {/* Description */}
+              <p className="text-[18px] md:text-[20px] leading-[1.6] text-gray-300 font-body mb-8">
+                Architecting digital realities and forging scalable systems. I bridge the gap between human intent and machine execution using <strong className="text-marvel-blue font-bold text-shadow-neon">C# .NET Core</strong> and <strong className="text-marvel-blue font-bold text-shadow-neon">Azure</strong>.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-[25px] flex-wrap w-full md:w-auto">
+                {/* Primary Button - Cyber Style */}
+                <button
+                  onClick={() => document.getElementById('missions')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="relative px-[32px] py-[14px] bg-marvel-blue/10 text-marvel-blue font-comic text-[20px] tracking-[2px] border border-marvel-blue shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:bg-marvel-blue hover:text-black hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] transition-all duration-300 flex items-center justify-center gap-[10px] group/btn overflow-hidden clip-slant"
+                >
+                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
+                  <Layers className="w-[20px] h-[20px] group-hover/btn:rotate-180 transition-transform relative z-10" />
+                  <span className="relative z-10">VIEW PROJECTS</span>
+                </button>
+
+                {/* Secondary Button - Holo Style */}
+                <a
+                  href="mailto:kattavenkatabhargavaram@gmail.com"
+                  className="relative px-[32px] py-[14px] bg-transparent text-white font-comic text-[20px] tracking-[2px] border border-white/30 hover:border-marvel-blue hover:text-marvel-blue hover:shadow-[inset_0_0_20px_rgba(0,240,255,0.2)] transition-all duration-300 flex items-center justify-center gap-[10px] group/btn overflow-hidden"
+                >
+                  <span className="absolute inset-0 bg-marvel-blue/5 opacity-0 group-hover/btn:opacity-100 transition-opacity"></span>
+                  <Send className="w-[20px] h-[20px] group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                  <span className="group-hover/btn:animate-pulse">CONTACT ME</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           <TechStack />
@@ -220,7 +253,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-marvel-dark hidden md:block">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-marvel-blue hidden md:block">
         <ArrowDown size={32} />
       </div>
     </section>
