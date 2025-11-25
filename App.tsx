@@ -18,39 +18,53 @@ const Navbar: React.FC<{
   scrollToSection: (id: string) => void;
 }> = ({ isMenuOpen, toggleMenu, scrollToSection }) => (
   <>
-    <nav className="fixed top-0 left-0 right-0 bg-marvel-dark text-white z-50 border-b-4 border-marvel-blue h-16 flex items-center justify-between px-6 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 bg-marvel-dark/80 backdrop-blur-md text-white z-50 border-b border-marvel-blue/30 h-20 flex items-center justify-between px-6 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
       {/* Logo */}
-      <div className="text-2xl font-comic tracking-wider bg-marvel-blue text-white px-3 py-1 transform -skew-x-12 border-2 border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,0.3)]">
-        <span className="block transform skew-x-12">BHARGAVA.DEV</span>
+      <div className="flex items-center gap-4">
+        <div
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-2xl font-comic tracking-wider bg-marvel-blue/10 text-marvel-blue px-4 py-2 border border-marvel-blue/50 rounded-lg shadow-[0_0_15px_rgba(0,195,255,0.2)] hover:shadow-[0_0_25px_rgba(0,195,255,0.4)] transition-all cursor-pointer group"
+        >
+          <span className="block group-hover:scale-105 transition-transform">BHARGAVA.DEV</span>
+        </div>
+        {/* System Status Indicator */}
+        <div className="hidden md:flex items-center gap-2 text-[10px] font-mono text-marvel-blue/70 border border-marvel-blue/20 px-2 py-1 rounded bg-black/40">
+          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+          SYSTEM: ONLINE
+        </div>
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex space-x-8 font-bold uppercase tracking-widest text-sm">
+      <div className="hidden md:flex space-x-8 font-bold uppercase tracking-widest text-sm items-center">
         {NAV_ITEMS.map((item) => (
           <button
             key={item}
             onClick={() => scrollToSection(item.toLowerCase())}
-            className="hover:text-marvel-blue transition-colors duration-200"
+            className="relative px-2 py-1 text-gray-400 hover:text-white transition-colors duration-200 group overflow-hidden"
           >
-            {item}
+            <span className="relative z-10">{item}</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-marvel-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
         ))}
+        <button className="bg-marvel-blue text-black font-bold px-4 py-2 rounded text-xs hover:bg-white transition-colors shadow-[0_0_10px_rgba(0,195,255,0.4)]">
+          INITIATE
+        </button>
       </div>
 
       {/* Mobile Menu Toggle */}
-      <button className="md:hidden text-white" onClick={toggleMenu}>
+      <button className="md:hidden text-white hover:text-marvel-blue transition-colors" onClick={toggleMenu}>
         {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
       </button>
     </nav>
 
     {/* Mobile Menu Overlay */}
     {isMenuOpen && (
-      <div className="fixed inset-0 bg-marvel-dark z-40 flex flex-col items-center justify-center space-y-8 text-2xl font-comic tracking-widest text-white">
+      <div className="fixed inset-0 bg-marvel-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 text-2xl font-comic tracking-widest text-white">
         {NAV_ITEMS.map((item) => (
           <button
             key={item}
             onClick={() => scrollToSection(item.toLowerCase())}
-            className="hover:text-marvel-blue"
+            className="hover:text-marvel-blue hover:scale-110 transition-all"
           >
             {item}
           </button>
@@ -61,17 +75,25 @@ const Navbar: React.FC<{
 );
 
 const Footer: React.FC = () => (
-  <footer className="bg-marvel-dark text-white py-12 border-t-8 border-marvel-blue">
-    <div className="container mx-auto px-6 text-center">
-      <h2 className="text-4xl font-comic mb-4 text-white">ASSEMBLE YOUR TEAM</h2>
-      <p className="mb-8 max-w-md mx-auto text-gray-400">
+  <footer className="bg-black text-white py-16 border-t border-marvel-blue/20 relative overflow-hidden">
+    {/* Background Grid */}
+    <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+
+    <div className="container mx-auto px-6 text-center relative z-10">
+      <h2 className="text-4xl font-comic mb-6 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">ASSEMBLE YOUR TEAM</h2>
+      <p className="mb-10 max-w-md mx-auto text-gray-400 font-body leading-relaxed">
         Need a distributed systems architect or a freelance developer? Contact me for high-scale opportunities.
       </p>
-      <div className="inline-block bg-marvel-blue text-white font-comic text-xl px-8 py-3 border-4 border-black shadow-comic hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">
-        <a href="mailto:kattavenkatabhargavaram@gmail.com">SEND SIGNAL</a>
+      <div className="inline-block">
+        <a
+          href="mailto:kattavenkatabhargavaram@gmail.com"
+          className="bg-marvel-blue/10 text-marvel-blue font-comic text-xl px-10 py-4 border border-marvel-blue rounded hover:bg-marvel-blue hover:text-black hover:shadow-[0_0_30px_rgba(0,195,255,0.6)] transition-all duration-300 flex items-center gap-3"
+        >
+          SEND SIGNAL
+        </a>
       </div>
-      <p className="mt-8 text-xs text-gray-500 uppercase tracking-widest">
-        © {new Date().getFullYear()} Bhargava Ram K V.
+      <p className="mt-12 text-xs text-gray-600 uppercase tracking-[0.2em] font-mono">
+        © {new Date().getFullYear()} Bhargava Ram K V. All Systems Operational.
       </p>
     </div>
   </footer>
@@ -93,14 +115,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+    <div className="min-h-screen bg-marvel-dark text-gray-100 overflow-x-hidden font-sans selection:bg-marvel-blue/30 selection:text-white relative">
+      {/* Global Background Texture */}
+      <div className="fixed inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none z-0"></div>
+      <div className="fixed inset-0 bg-gradient-to-b from-transparent via-marvel-dark/80 to-marvel-dark pointer-events-none z-0"></div>
+
       <Navbar
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
         scrollToSection={scrollToSection}
       />
 
-      <main className="pt-16">
+      <main className="pt-20 relative z-10">
         <Hero />
 
         <div id="origin">
