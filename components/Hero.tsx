@@ -181,21 +181,21 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-comic text-[50px] md:text-[80px] leading-none mb-[20px] text-white tracking-[2px] drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">
+          <div className="font-comic text-[50px] md:text-[80px] leading-none mb-[20px] text-white tracking-[2px] drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">
             HELLO, I'M
-          </h1>
+          </div>
 
           {/* Name with Glitch Effect */}
           <div className="relative mb-[30px] group">
             <h1 className="font-comic text-[60px] md:text-[90px] text-transparent bg-clip-text bg-gradient-to-r from-marvel-blue to-white tracking-[3px] leading-none relative z-10 group-hover:animate-glitch">
               BHARGAVA RAM
             </h1>
-            <h1 className="font-comic text-[60px] md:text-[90px] text-marvel-red tracking-[3px] leading-none absolute top-0 left-0 opacity-0 group-hover:opacity-70 group-hover:translate-x-[2px] transition-all duration-100 z-0">
+            <span aria-hidden="true" className="font-comic text-[60px] md:text-[90px] text-marvel-red tracking-[3px] leading-none absolute top-0 left-0 opacity-0 group-hover:opacity-70 group-hover:translate-x-[2px] transition-all duration-100 z-0 pointer-events-none">
               BHARGAVA RAM
-            </h1>
-            <h1 className="font-comic text-[60px] md:text-[90px] text-marvel-blue tracking-[3px] leading-none absolute top-0 left-0 opacity-0 group-hover:opacity-70 group-hover:-translate-x-[2px] transition-all duration-100 z-0">
+            </span>
+            <span aria-hidden="true" className="font-comic text-[60px] md:text-[90px] text-marvel-blue tracking-[3px] leading-none absolute top-0 left-0 opacity-0 group-hover:opacity-70 group-hover:-translate-x-[2px] transition-all duration-100 z-0 pointer-events-none">
               BHARGAVA RAM
-            </h1>
+            </span>
           </div>
 
           {/* Subtitle */}
@@ -226,6 +226,7 @@ export const Hero: React.FC = () => {
                 {/* Primary Button - Cyber Style */}
                 <button
                   onClick={() => document.getElementById('missions')?.scrollIntoView({ behavior: 'smooth' })}
+                  aria-label="View Projects"
                   className="relative px-[32px] py-[14px] bg-marvel-blue/10 text-marvel-blue font-comic text-[20px] tracking-[2px] border border-marvel-blue shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:bg-marvel-blue hover:text-black hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] transition-all duration-300 flex items-center justify-center gap-[10px] group/btn overflow-hidden clip-slant"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
@@ -236,6 +237,7 @@ export const Hero: React.FC = () => {
                 {/* Secondary Button - Holo Style */}
                 <a
                   href="mailto:kattavenkatabhargavaram@gmail.com"
+                  aria-label="Contact Me via Email"
                   className="relative px-[32px] py-[14px] bg-transparent text-white font-comic text-[20px] tracking-[2px] border border-white/30 hover:border-marvel-blue hover:text-marvel-blue hover:shadow-[inset_0_0_20px_rgba(0,240,255,0.2)] transition-all duration-300 flex items-center justify-center gap-[10px] group/btn overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-marvel-blue/5 opacity-0 group-hover/btn:opacity-100 transition-opacity"></span>

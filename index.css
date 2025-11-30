@@ -1,0 +1,34 @@
+/* Custom styles */
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: #050505;
+  color: #e5e5e5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+}
+
+.comic-panel {
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0px 0px #000;
+  transition: transform 0.2s;
+}
+
+.comic-panel:hover {
+  transform: translateY(-4px);
+}
+
+.clip-slant {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.clip-slant-reverse {
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+}
